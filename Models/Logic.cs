@@ -67,6 +67,7 @@ namespace BombGame
             if (!TestedParts.Contains(component))
             {
                 TestedParts.Add(component);
+                Printable.Remove(component);
             }
             success = "fail";
         }

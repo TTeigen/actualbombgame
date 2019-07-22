@@ -15,6 +15,7 @@ namespace BombGame
             Console.WriteLine("\nOkay Gamer, you get one shot at this, make it count!");
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~");
+            Console.WriteLine("You need to interact with the 5 parts of the mechanism in the correct order if you want to diffuse this bomb. Wrong guess cost you 4 seconds, out of order guesses COULD cost you extra time. Good Luck!");
             Bomb.StageBuilder(solved, 12);
             printInfo(timer);
             Turns(timer, solved);
@@ -48,7 +49,10 @@ namespace BombGame
             int diffused = 0;
             do
             {
-                Console.WriteLine("\nChoose a part to disarm [case sensitive]\nEnter 'list' to see the parts you tested out of order.\n");
+                Console.WriteLine("\nChoose a part to disarm [case sensitive]");
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine("Remember to check your list with 'list';\n");
+                Console.ForegroundColor = ConsoleColor.Black;
                 string component = Console.ReadLine();
                 if (component == "list")
                 {
@@ -71,10 +75,13 @@ namespace BombGame
                 else if (test == "fail")
                 {   
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.WriteLine("Looks like thats the wrong order, rememeber this for later");
+                    Console.WriteLine("Looks like thats the wrong order, part added to your 'list'");
                     Console.ForegroundColor = ConsoleColor.Black;
                     Console.WriteLine("!      !    !     !      !");
-                    timer -=2;
+                    if (Bomb.TestedParts.Count%2 == 0)
+                    {
+                        timer -=2;
+                    }
 
                 }
                 else 
