@@ -57,6 +57,10 @@ namespace BombGame
             success = "success";
             Printable.Remove(component);
             Solution[0].Remove(component);
+            if (TestedParts.Contains(component))
+            {
+                TestedParts.Remove(component);
+            }
         }
         else if (Solution[0].Contains(component))
         {
